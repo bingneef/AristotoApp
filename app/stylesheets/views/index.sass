@@ -1,0 +1,17 @@
+@import '../vars.sass'
+.app
+  overflow: hidden
+  display: flex
+  flex-direction: column
+
+  .app-ios-space
+    height: $dimension-ios-tabbar-extra
+
+  &-content
+    padding-top: $dimension-tabbar-height
+    display: flex
+    flex: 1
+    overflow: scroll
+
+    .main-container
+      height: 100%
