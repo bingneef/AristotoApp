@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import FastClick from 'fastclick'
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import configureStore from './configureStore';
 import Routes from './router';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './stylesheets/app.sass';
 
 // Track errors in production env
@@ -12,20 +13,16 @@ if (process.env.NODE_ENV === 'production') {
   Raven.config(webpackEnv.RAVEN_KEY).install()
 }
 
-// remove 200ms delay on mobile click
-if ('addEventListener' in document) {
-  document.addEventListener('DOMContentLoaded', () => {
-    // eslint-disable-next-line no-undef
-    FastClick.attach(document.body);
-  }, false);
-}
+injectTapEventPlugin()
 
 const store = configureStore()
 
 // Render it to DOM
 ReactDOM.render(
-  <Provider store={ store }>
-    <Routes />
-  </Provider>,
+  <MuiThemeProvider>
+    <Provider store={ store }>
+      <Routes />
+    </Provider>
+  </MuiThemeProvider>,
   document.getElementById('root')
 );

@@ -79,6 +79,12 @@ const rules = [
     include: imgPath,
     use: 'url-loader?limit=20480&name=assets/[name]-[hash].[ext]',
   },
+  {
+    test: /\.(woff|woff2|eot|ttf|svg)$/,
+    use: [
+      'file-loader'
+    ]
+  }
 ];
 
 if (isProductionBuild) {
@@ -117,7 +123,7 @@ if (isProductionBuild) {
   // Production rules
   rules.push(
     {
-      test: /\.(sass|css)$/,
+      test: /\.(sass|css|scss)$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: 'css-loader!postcss-loader!sass-loader',

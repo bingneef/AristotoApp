@@ -5,7 +5,9 @@ import PropTypes from 'prop-types'
 import { Router, Route, browserHistory, IndexRedirect } from 'react-router'
 
 import Index from './views/Index';
+import Login from './views/Login';
 import Home from './views/Home';
+import Leaderboard from './views/Leaderboard';
 import NotFound from './views/NotFound';
 
 class Routes extends React.Component {
@@ -22,7 +24,7 @@ class Routes extends React.Component {
 
     return (
       <Router history={ browserHistory }>
-        <Route path='login' component={ Home } />
+        <Route path='login' component={ Login } />
         <Route path='logout' component={ Home } />
         <Route path='signup' component={ Home } />
 
@@ -30,7 +32,7 @@ class Routes extends React.Component {
           <IndexRedirect to='timeline' />
           <Route path='timeline' component={ Home } />
           <Route path='add-match' component={ Home } />
-          <Route path='leaderboard' component={ Home } />
+          <Route path='leaderboard' component={ Leaderboard } />
           <Route path='my-stats' component={ Home } />
           <Route path='account' component={ Home } />
         </Route>

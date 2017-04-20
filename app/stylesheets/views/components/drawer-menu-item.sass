@@ -1,0 +1,25 @@
+@import '../../vars.sass'
+.app-drawer-menu-item
+  // Horrible, but kinda needed..
+  > div > div
+    padding: 0 !important
+
+  a
+    text-decoration: none
+    padding: 0 $dimension-space
+
+    &.is-active
+      background: rgba(0, 0, 0, 0.1)
+      font-weight: 500
+      color: $color-text-black
+  
+  &-link
+    display: flex
+    flex-direction: row
+    align-items: center
+
+  &-icon
+    font-size: 24px
+    padding-right: 24px
+
+  &-title

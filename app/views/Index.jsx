@@ -1,29 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import FlatButton from 'material-ui/FlatButton';
+import AppDrawer from './components/AppDrawer'
 import '../stylesheets/views/index.sass';
-import Tabbar from './Tabbar';
 
 class Index extends Component {
   constructor (props) {
     super(props);
+
+    this.state = {
+      drawerOpen: false
+    }
   }
 
   render () {
     return (
       <div className='app'>
-        <Tabbar />
-        {
-          window.navigator.standalone &&
-          <div className='app-ios-space' />
-        }
+        <AppDrawer />
         <div className='app-content'>
           {
             this.props.children
           }
         </div>
       </div>
-    );
+    )
   }
 }
   
