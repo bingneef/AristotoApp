@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { Drawer, MenuItem, AppBar, FontIcon } from 'material-ui';
 import '../../stylesheets/views/components/drawer.sass';
 import AppDrawerMenuItem from './AppDrawerMenuItem'
+import Avatar from 'material-ui/Avatar'
 
 class AppDrawer extends Component {
   constructor (props) {
@@ -20,7 +21,7 @@ class AppDrawer extends Component {
 
     this.navItems = [
       {
-        path: '/timeline',
+        path: '/rounds',
         icon: 'explore',
         title: 'Voorspellingen'
       },
@@ -71,7 +72,7 @@ class AppDrawer extends Component {
 
   render () {
     return (
-      <div>
+      <div className="app-drawer">
         <Drawer 
           open={this.state.open || this.state.docked}
           docked={this.state.docked}
@@ -96,14 +97,23 @@ class AppDrawer extends Component {
         <AppBar 
             title="Aristoto" 
             showMenuIconButton={ !this.state.docked }
-            onLeftIconButtonTouchTap={this.toggleDrawer.bind(this)}/>
+            onLeftIconButtonTouchTap={this.toggleDrawer.bind(this)}>
+            { 
+              this.state.docked &&
+              <div className="app-drawer-avatar-container">
+                <Avatar src={this.props.currentUser.avatarUrl} />
+              </div>
+            }
+          </AppBar>
       </div>
     );
   }
 }
 
-const mapStateToProps = () => {
-  return { }
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.user.currentUser
+  }
 };
 
 export default connect(mapStateToProps)(AppDrawer);

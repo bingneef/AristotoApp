@@ -20,6 +20,12 @@ a
 input:-webkit-autofill
   -webkit-box-shadow: 0 0 0px 1000px white inset
 
+.app-container
+  padding: $dimension-space $dimension-space
+
+  @media only screen and (min-width: $breakpoint-desktop)
+    padding: 3*$dimension-space 4*$dimension-space
+
 $roboto-font-path: '../../fonts'
 @import '~roboto-fontface/css/roboto/sass/roboto-fontface-thin.scss'
 @import '~roboto-fontface/css/roboto/sass/roboto-fontface-regular.scss'

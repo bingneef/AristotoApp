@@ -5,6 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import { browserHistory } from 'react-router'
+import { getUser } from '../api/user'
 import '../stylesheets/views/login.sass';
 
 class Login extends Component {
@@ -42,7 +43,8 @@ class Login extends Component {
 
   setCredentials (apiToken) {
     localStorage.setItem('apiToken', apiToken)
-    axios.defaults.headers.common['authorization'] = 'Token token=' + localStorage.getItem('apiToken');
+    axios.defaults.headers.common['authorization'] = 'Token token=' + localStorage.getItem('apiToken')
+    getUser(this.props)
   }
 
   render () {

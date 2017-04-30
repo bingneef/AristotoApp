@@ -1,46 +1,52 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import MatchCard from './components/MatchCard'
+import { Tabs, Tab } from 'material-ui';
+import { getRounds, getMatchesForRound } from '../api/rounds'
+import '../stylesheets/views/home.sass';
 
 class Home extends Component {
   constructor (props) {
-    super(props);
+    super(props)
+
+    this.loadMatches = this.loadMatches.bind(this)
+  }
+
+  componentDidMount () {
+    getRounds(this.props)
+  }
+
+  loadMatches (id) {
+    getMatchesForRound(this.props, id)
   }
 
   render () {
     return (
-      <div>
-        <h1>Awesomeness by Creative Developers</h1>
-        <p>Test something</p>
-        <RaisedButton label='default' primary={true} />
+      <div className="app-home">
+        <Tabs>
+          {
+            this.props.rounds.map((round) => {
+              return <Tab key={ round.id} label={ round.value} onClick={() => this.loadMatches(round.id)} />
+            })
+          }
+        </Tabs>
 
-        <Card>
-          <CardHeader
-            title="URL Avatar"
-            subtitle="Subtitle"
-            avatar="https://placehold.it/250x250"
-          />
-          <CardTitle title="Card title" subtitle="Card subtitle" />
-          <CardText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-          </CardText>
-          <CardActions>
-            <FlatButton label="Action1" />
-            <FlatButton label="Action2" />
-          </CardActions>
-        </Card>
+        {
+          this.props.currentRound &&
+          this.props.currentRound.matches.map((match) => {
+            return <MatchCard key={match.id} match={match} />
+          })
+        }
       </div>
-    );
+    )
   }
 }
 
-const mapStateToProps = () => {
-  return { }
-};
+const mapStateToProps = (state) => {
+  return {
+    rounds: state.rounds.index,
+    currentRound: state.rounds.currentRound
+  }
+}
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Home)

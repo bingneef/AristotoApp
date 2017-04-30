@@ -15,7 +15,7 @@ instance.interceptors.response.use(
   response => response,
   error => {
     if (error.response.status === 401) {
-      browserHistory.push('logout')
+      browserHistory.push('/logout')
       return null
     }
     return Promise.reject(error);

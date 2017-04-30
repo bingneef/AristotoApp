@@ -96,7 +96,7 @@ if (isProductionBuild) {
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings: false,
+        warnings: true,
         screw_ie8: true,
         conditionals: true,
         unused: true,

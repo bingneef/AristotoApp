@@ -6,9 +6,8 @@ import combineReducers from './reducers';
 const nextRootReducer = require('./reducers').default;
 
 export default function configureStore (configurationCompleted) {
-  const enhancer = compose(
-    autoRehydrate(),
-    composeWithDevTools()
+  const enhancer = composeWithDevTools(
+    autoRehydrate()
   );
 
   const reducers = combineReducers();

@@ -7,6 +7,8 @@ import Routes from './router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './stylesheets/app.sass';
 
+localStorage.setItem('apiToken', 'xb4IHmKuEbpfbpocVMImOaVU')
+
 // Track errors in production env
 if (process.env.NODE_ENV === 'production') {
   // eslint-disable-next-line no-undef
